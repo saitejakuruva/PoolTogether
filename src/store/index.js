@@ -4,12 +4,8 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  plugins: [
-    createPersistedState()
-    // [vuexCache]
-  ],
-  state: {
+function initialState() {
+  return {
     web3Address: "",
     modals: [
       {
@@ -19,8 +15,16 @@ export default new Vuex.Store({
         },
         show: false
       }
-    ]
-  },
+    ],
+    version: 1
+  }
+}
+export default new Vuex.Store({
+  plugins: [
+    createPersistedState()
+    // [vuexCache]
+  ],
+  state: initialState(),
   mutations: {
     setWeb3Address(state, address) {
       state.web3Address = address;
@@ -43,6 +47,12 @@ export default new Vuex.Store({
           }
         }
       );
+    },
+    resetState(state) {
+      var initState = initialState();
+      for (var key in state) {
+        state.key = initState[key];
+      }
     }
   },
   actions: {
@@ -54,6 +64,9 @@ export default new Vuex.Store({
     },
     showModalWithOptions({commit}, data) {
       commit("showModalWithOptions", data);
+    },
+    resetState({commit}) {
+      commit("resetState");
     }
   },
   getters: {

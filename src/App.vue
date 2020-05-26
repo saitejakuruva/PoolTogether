@@ -24,5 +24,12 @@ export default {
   data: () => ({
     //
   }),
+  created() {
+    var version = 8;
+    if (this.$store.state.version != version) {
+      this.$store.dispatch("resetState");
+      this.$store.dispatch("setVersion", version);
+    }
+  }
 };
 </script>

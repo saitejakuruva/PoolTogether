@@ -2,8 +2,14 @@
   <div class="home">
     <span class="home-text">
       Your best chance to win a lottery
+      <div class="subtitle">
+
+      </div>
       <div class="deposit-with-ramp-btn">
-        <vs-button color="#311457" @click="depositWithRamp">DEPOSIT WITH RAMP</vs-button>
+        <vs-button color="#311457" v-if="web3Address" @click="depositWithRamp">DEPOSIT WITH RAMP</vs-button>
+      </div>
+      <div class="steps-card">
+        Steps
       </div>
     </span>
   </div>
@@ -21,6 +27,11 @@ export default {
 
         }
       })
+    }
+  },
+  computed: {
+    web3Address() {
+      return this.$store.state.web3Address;
     }
   }
 }
@@ -45,5 +56,12 @@ export default {
   .deposit-with-ramp-btn {
     font-size: 16px;
     text-transform: uppercase;
+    margin-top: 30px;
+  }
+  .steps-card {
+    background: gray;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
   }
 </style>
