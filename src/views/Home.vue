@@ -139,6 +139,7 @@ export default {
     }
     .cards {
       display: block;
+      margin-top: 75px;
     }
     .bottom-card-left, .bottom-card-right {
       width: 80%;
