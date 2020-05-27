@@ -53,6 +53,9 @@ export default new Vuex.Store({
       for (var key in state) {
         state.key = initState[key];
       }
+    },
+    setVersion(state, version) {
+      state.version = version;
     }
   },
   actions: {
@@ -67,6 +70,9 @@ export default new Vuex.Store({
     },
     resetState({commit}) {
       commit("resetState");
+    },
+    setVersion({commit}, version) {
+      commit("setVersion", version);
     }
   },
   getters: {

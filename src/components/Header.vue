@@ -3,7 +3,7 @@
     <vs-col class="header-item">
       <img height="50" :src="require('@/assets/logos/pool-together--white-logo@2x.png')"/>
     </vs-col>
-    <vs-col class="header-item" vs-type="flex" vs-align="center">
+    <vs-col class="header-item" vs-type="flex" vs-justify="flex-end" vs-align="center">
       <vs-button v-if="!web3Address" class="connect-wallet-btn" @click="login" color="#95389e" text-color="#ffffff" type="border">CONNECT FORTMATIC WALLET</vs-button>
       <div class="account-icon" v-else><span class="tooltip-text">{{web3Address}}</span>{{web3Address.slice(0,6)}}...{{web3Address.slice(-4)}}<vs-button v-if="web3Address" class="logout-btn" @click="logout" color="#95389e" text-color="#ffffff" type="border">LOGOUT</vs-button></div>
     </vs-col>
@@ -78,5 +78,11 @@ export default {
       #311457 45%,
       #311457 100%
     );
+  }
+
+  @media only screen and (max-width: 768px) {
+    .account-icon .tooltip-text {
+      display: none; 
+    }
   }
 </style>

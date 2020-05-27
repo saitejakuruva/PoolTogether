@@ -1,7 +1,7 @@
 <template>
-  <v-dialog v-model="depositModal" :width="width" light>
+  <v-dialog class="dialog-box" v-model="depositModal" :width="width" light>
     <div class="outer-container">
-      <div @click="isCurrencyConfirmed = false" class="back-btn">
+      <div @click="(isCurrencyConfirmed)?isCurrencyConfirmed = false: depositModal = false;" class="back-btn">
         BACK
       </div>
       <div class="ramp-logo-wrapper">
@@ -40,8 +40,6 @@
         <vs-button v-if="dollarValue != ''" @click="confirm" color="success" type="border">CONFIRM</vs-button>
         <vs-button v-else class="next-btn-disabled" disabled color="success" type="border">CONFIRM</vs-button>
       </div>
-      
-
     </div>
   </v-dialog>
 </template>
@@ -63,11 +61,20 @@ export default {
     depositModal: {
       get() {
         var modal = this.$store.getters.getModalShowState(this.modalName);
-        return modal.show;
+        this.isCurrencyConfirmed = false;
+        if (modal) {
+          return modal.show;
+        } else {
+          return false;
+        }
       },
       set(val) {
-        if (!val)
+        if (!val) {
+          this.isCurrencyConfirmed = false;
           this.$store.dispatch("hideModal", this.modalName)
+        } else {
+          this.isCurrencyConfirmed = false;
+        }
       }
     },
     dollarValueBigNumber() {
@@ -82,7 +89,7 @@ export default {
       }
     },
     width() {
-      return "40%";
+      return "30%";
     }
   },
   methods: {
@@ -153,6 +160,8 @@ export default {
     background: #30475e;
     color: white;
     padding: 20px;
+    margin: auto;
+    border-radius: 20px;
   }
   .input-label {
     font-size: 12px;
