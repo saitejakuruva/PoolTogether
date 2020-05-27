@@ -1,3 +1,3 @@
 module.exports = {
-  fortmaticAPIKey: "pk_test_D907B035605493E5"
+  fortmaticAPIKey: "pk_live_0271D8242773AA2D"
 }
