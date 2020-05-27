@@ -61,7 +61,6 @@ export default {
     depositModal: {
       get() {
         var modal = this.$store.getters.getModalShowState(this.modalName);
-        this.isCurrencyConfirmed = false;
         if (modal) {
           return modal.show;
         } else {
@@ -90,6 +89,12 @@ export default {
     },
     width() {
       return "30%";
+    }
+  },
+  watch: {
+    depositModal: function (val) {
+      console.log(val);
+      this.isCurrencyConfirmed = false;
     }
   },
   methods: {
